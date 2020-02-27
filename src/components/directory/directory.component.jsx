@@ -1,16 +1,14 @@
 import React from 'react';
+import './directory.styles.scss';
+
+import sections from '../../config-files/directory.data';
 
 import MenuItem from '../menu-item/menu-item.component';
 
-import './directory.styles.scss';
-
 const Directory = () => (
+
     <div className='directoryMenu'>
-        <MenuItem title={'HATS'} />
-        <MenuItem title={'JACKETS'} />
-        <MenuItem title={'SNEAKERS'} />
-        <MenuItem title={'WOMEN'} />
-        <MenuItem title={'MEN'} />
+        {sections.map(({title, id, imageUrl, size}) => <MenuItem key={id} title={title} imgUrl={imageUrl} size={size}/>)}
     </div>
 )
 
