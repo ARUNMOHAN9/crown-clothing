@@ -49,6 +49,11 @@
     border: 1px solid black;
     background-color: lightgrey;
     opacity: 0.8;
+    transition: .5s;
+
+    &:hover {
+      background-color: white;
+    }
 
     .title {
       font-weight: bold;
