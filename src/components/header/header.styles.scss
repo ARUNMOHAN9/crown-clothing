@@ -5,6 +5,13 @@
   justify-content: space-between;
   align-items: center;
 
+  .logo_container {
+    transition: .4s;
+    &:hover {
+      transform: rotateY(180deg);
+    }
+  }
+
   .action_container {
     width: 50%;
     display: flex;
