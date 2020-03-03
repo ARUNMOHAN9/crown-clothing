@@ -1,0 +1,18 @@
+.header {
+  min-height: 50px;
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+
+  .action_container {
+    width: 50%;
+    display: flex;
+    justify-content: flex-end;
+
+    a {
+      width: 70px;
+      text-transform: uppercase;
+    }
+  }
+}
