@@ -1,3 +1,5 @@
+@import '../../styles//0-abstracts/variables';
+
 .collection-item {
   width: 22%;
   display: flex;
@@ -7,22 +9,13 @@
   padding: 10px;
   border-radius: 5px;
   margin: 0 5px;
-  background-image: radial-gradient(circle, #e4f6ff 2%, #98a293 37%, #d6d6d6 100%);
-  transition: all .4s;
-
-  .cust-btn {
-    opacity: 0;
-  }
-
-  &:hover {
-    box-shadow: 2px 1px 6px 0px black;
-    opacity: .8;
-    .cust-btn {
-      background-color: thistle;
-      color: black;
-      opacity: 0.9;
-    }
-  }
+  background-image: radial-gradient(
+    circle,
+    #e4f6ff 2%,
+    #98a293 37%,
+    #d6d6d6 100%
+  );
+  transition: all 0.4s;
 
   .image {
     width: 100%;
@@ -31,20 +24,23 @@
     background-position: center;
     margin-bottom: 5px;
     position: relative;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-end;
+    align-items: center;
+  }
 
-    .cust-btn {
-      position: absolute;
-      bottom: 25px;
-      transform: translateX(-50%);
-      left: 50%;
-      width: 90%;
-      min-height: 50px;
+  button {
+    opacity: 0;
+    margin-bottom: 20px;
+    width: 90%;
+  }
 
-      &:hover {
-        background-color: black;
-        color: white;
-        opacity: 1;
-      }
+  &:hover {
+    box-shadow: 2px 1px 6px 0px $black;
+    opacity: 0.8;
+    button {
+      opacity: 0.9;
     }
   }
 
@@ -55,9 +51,8 @@
     font-size: 18px;
 
     .price {
-
       &::before {
-        content: '$';
+        content: "$";
       }
     }
   }
