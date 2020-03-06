@@ -1,0 +1,10 @@
+.signIn_wrapper {
+    .btn-container {
+        display: flex;
+        justify-content: flex-end;
+
+        button[type='submit'] {
+            margin-right: 10px;
+        }
+    }
+}

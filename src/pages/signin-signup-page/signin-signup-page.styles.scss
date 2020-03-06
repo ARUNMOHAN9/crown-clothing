@@ -1,0 +1,31 @@
+.wrapper {
+  display: flex;
+  justify-content: space-between;
+
+  .signIn_wrapper,
+  .signUp_wrapper {
+    min-width: 340px;
+    width: 50%;
+  }
+
+  .signIn_wrapper {
+    margin-right: 20px;
+  }
+
+  .signUp_wrapper {
+    margin-left: 20px;
+  }
+
+  @media only screen and (max-width: 775px) {
+    & {
+      flex-direction: column;
+      align-items: center;
+
+      .signIn_wrapper,
+      .signUp_wrapper {
+        width: 100%;
+        margin: 0;
+      }
+    }
+  }
+}
