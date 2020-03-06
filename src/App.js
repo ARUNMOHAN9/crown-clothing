@@ -1,5 +1,5 @@
 import React from 'react';
-import { Route, Switch } from 'react-router-dom';
+import { Route, Switch, Redirect } from 'react-router-dom';
 import { connect } from 'react-redux';
 
 import { auth, createUserProfile } from './config-files/firebase/firebase.utils';
@@ -8,7 +8,7 @@ import HomePage from './pages/homepage/homepage.component';
 import ShopPage from './pages/shoppage/shoppage.component';
 import Header from './components/header/header.component';
 import SigninSignupPage from './pages/signin-signup-page/signin-signup-page';
-import {setCurrentUser} from './redux/user/user.actions';
+import { setCurrentUser } from './redux/user/user.actions';
 
 import './App.scss';
 
@@ -17,14 +17,14 @@ class App extends React.Component {
   unsubscribeAuth = null;
 
   componentDidMount() {
-    const {setCurrentUser} = this.props;
+    const { setCurrentUser } = this.props;
     this.unsubscribeAuth = auth.onAuthStateChanged(async userAuth => {
       if (userAuth) {
         const userRef = await createUserProfile(userAuth);
         userRef.onSnapshot(snapshot => {
           setCurrentUser({
-              id: snapshot.id,
-              ...snapshot.data()
+            id: snapshot.id,
+            ...snapshot.data()
           });
         });
       } else {
@@ -38,18 +38,25 @@ class App extends React.Component {
   }
 
   render() {
+    const {currentUser} = this.props;
     return (
       <>
         <Header />
         <Switch>
           <Route exact path="/" component={HomePage} />
-          <Route exact path="/shop" component={ShopPage} />
-          <Route exact path="/signin" component={SigninSignupPage} />
+          <Route path="/shop" component={ShopPage} />
+          <Route exact path="/signin" render={() => currentUser ? (<Redirect to="/"/>) : (<SigninSignupPage/>) } />
         </Switch>
       </>
     );
   }
 }
+
+const mapStateToProps = (state) => (
+  {
+    currentUser: state.user.currentUser
+  }
+)
 
 const mapDispatchToProps = (dispatch) => (
   {
@@ -57,4 +64,4 @@ const mapDispatchToProps = (dispatch) => (
   }
 );
 
-export default connect(null, mapDispatchToProps)(App);
+export default connect(mapStateToProps, mapDispatchToProps)(App);
