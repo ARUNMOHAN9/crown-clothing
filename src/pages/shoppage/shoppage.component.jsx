@@ -12,7 +12,7 @@ class ShopPage extends Component {
     render() {
         return (
             this.state.collections.map(
-                ({ id, ...otherCollectionProps }) => <PreviewCollection key={id} {...otherCollectionProps} />
+                ({ id, ...otherCollectionProps }) => <PreviewCollection key={id} categoryId={id}{...otherCollectionProps} />
             )
         )
     }
