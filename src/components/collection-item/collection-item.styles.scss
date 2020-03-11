@@ -1,7 +1,8 @@
 @import '../../styles//0-abstracts/variables';
 
 .collection-item {
-  width: 22%;
+  width: 200px;
+  min-width: 200px;
   display: flex;
   flex-direction: column;
   height: 350px;
