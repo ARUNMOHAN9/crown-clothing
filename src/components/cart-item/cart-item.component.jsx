@@ -6,7 +6,7 @@ import './cart-item.styles.scss';
 import {addItemToCart, removeItemFromCart} from '../../redux/cart/cart.actions';
 
 const CartItem = ({ categoryId, item, addItemToCart, removeItemFromCart }) => {
-    const { name, imageUrl, price, count } = item;
+    const { name, imageUrl, price, quantity } = item;
 
     return (
         <div className="cart-item">
@@ -18,7 +18,7 @@ const CartItem = ({ categoryId, item, addItemToCart, removeItemFromCart }) => {
                 <div className="controls">
                     <div className="quantity">
                         <span className="minus"  onClick={() => removeItemFromCart({id: categoryId, item: item})}>-</span>
-                        <span className="count">{count}</span>
+                        <span className="count">{quantity}</span>
                         <span className="plus"  onClick={() => addItemToCart({id: categoryId, item: item})}>+</span>
                     </div>
                     <span>x</span>
@@ -29,7 +29,7 @@ const CartItem = ({ categoryId, item, addItemToCart, removeItemFromCart }) => {
                 </div>
             </div>
             <div className="total-amt">
-                {count * price}
+                {quantity * price}
             </div>
         </div>
     );

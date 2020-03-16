@@ -7,6 +7,7 @@ import { auth, createUserProfile } from './config-files/firebase/firebase.utils'
 import HomePage from './pages/homepage/homepage.component';
 import ShopPage from './pages/shoppage/shoppage.component';
 import SigninSignupPage from './pages/signin-signup-page/signin-signup-page';
+import CheckoutPage from './pages/checkout/checkout';
 
 import Header from './components/header/header.component';
 import Loader from './components/loader/loader.component';
@@ -50,6 +51,7 @@ class App extends React.Component {
         <Switch>
           <Route exact path="/" component={HomePage} />
           <Route path="/shop" component={ShopPage} />
+          <Route path="/checkout" component={CheckoutPage} />
           <Route exact path="/signin" render={() => currentUser ? (<Redirect to="/" />) : (<SigninSignupPage />)} />
         </Switch>
         <Loader />

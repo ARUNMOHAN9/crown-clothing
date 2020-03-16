@@ -8,7 +8,7 @@ const CartIconComponent = ({cartItems}) => {
     let quantity = 0;
     for(let i =0; i < cartItems.length; i++) {
         for(let j =0; j < cartItems[i].item.length; j++) {
-            quantity += cartItems[i].item[j].count;
+            quantity += cartItems[i].item[j].quantity;
         }
     }
     return (
