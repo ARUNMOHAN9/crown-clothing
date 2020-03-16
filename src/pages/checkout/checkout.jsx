@@ -5,7 +5,7 @@ import CheckoutItem from '../../components/checkout-item/checkout-item';
 
 import './checkout.styles.scss';
 
-const CheckoutPage = ({ cartItems, total=20 }) => (
+const CheckoutPage = ({ cartItems, totalPrice }) => (
   <div className='checkout-page'>
     <div className='checkout-header'>
       <div className='header-block'>
@@ -27,12 +27,13 @@ const CheckoutPage = ({ cartItems, total=20 }) => (
      {cartItems.map( (category) => category.item.map( (item) => 
         <CheckoutItem key={`c${category.id}p${item.id}`} categoryId={category.id} cartItem={item}/>
     ))}
-    <div className='total'>TOTAL: ${total}</div>
+    <div className='total'>TOTAL: ${totalPrice}</div>
   </div>
 );
 
-const mapStateToProps = ({cart: {cartItems}})  => ({
-    cartItems
+const mapStateToProps = ({cart: {cartItems, totalPrice}})  => ({
+    cartItems,
+    totalPrice
 });
 
 export default connect(mapStateToProps)(CheckoutPage);

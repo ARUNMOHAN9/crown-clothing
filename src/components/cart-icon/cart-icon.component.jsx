@@ -4,23 +4,17 @@ import {connect} from 'react-redux';
 import {ReactComponent as CartIcon} from '../../assets/images/shopping_bag.svg';
 import './cart-icon.styles.scss';
 
-const CartIconComponent = ({cartItems}) => {
-    let quantity = 0;
-    for(let i =0; i < cartItems.length; i++) {
-        for(let j =0; j < cartItems[i].item.length; j++) {
-            quantity += cartItems[i].item[j].quantity;
-        }
-    }
+const CartIconComponent = ({totalQuantity}) => {
     return (
         <div className="cart-icon">
             <CartIcon className="shopping-icon"/>
-            <span className="item-count">{quantity}</span>
+            <span className="item-count">{totalQuantity}</span>
         </div>
     );
 }
 
-const mapStateToProps = ({cart:{cartItems}}) => ({
-    cartItems
+const mapStateToProps = ({cart:{totalQuantity}}) => ({
+    totalQuantity
 })
 
 export default connect(mapStateToProps, null)(CartIconComponent);

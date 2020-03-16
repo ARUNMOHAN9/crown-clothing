@@ -1,5 +1,5 @@
 export const addCartItem = (state, payload) => {
-    const {cartItems} = JSON.parse(JSON.stringify(state));
+    let {cartItems, totalQuantity, totalPrice} = JSON.parse(JSON.stringify(state));
     const categoryIndex = cartItems.findIndex(category => category.id === payload.id);
     if (categoryIndex === -1) {
         payload.item.quantity = 1;
@@ -14,12 +14,14 @@ export const addCartItem = (state, payload) => {
             cartItems[categoryIndex].item[itemIndex].quantity++;
         }
     }
+    totalQuantity += 1;
+    totalPrice += payload.item.price;
 
-    return {...state, cartItems};
+    return {...state, cartItems, totalPrice, totalQuantity};
 }
 
 export const removeCartItem = (state, payload) => {
-    const {cartItems} = JSON.parse(JSON.stringify(state));
+    let {cartItems, totalQuantity, totalPrice} = JSON.parse(JSON.stringify(state));
     const categoryIndex = cartItems.findIndex(category => category.id === payload.id);
     if (categoryIndex === -1) {
         return state;
@@ -33,8 +35,31 @@ export const removeCartItem = (state, payload) => {
             } else {
                 cartItems.splice(categoryIndex, 1);
             }
+            totalQuantity -= 1;
+            totalPrice -= payload.item.price;
         }
     }
 
-    return {...state, cartItems};
+    return {...state, cartItems, totalPrice, totalQuantity};
+}
+
+export const deleteCartItem = (state, payload) => {
+    let {cartItems, totalQuantity, totalPrice} = JSON.parse(JSON.stringify(state));
+    const categoryIndex = cartItems.findIndex(category => category.id === payload.id);
+    if (categoryIndex === -1) {
+        return state;
+    } else {
+        const itemIndex = cartItems[categoryIndex].item.findIndex(item => item.id === payload.item.id);
+        if(itemIndex === -1) {
+            return state;
+        } else {
+            const itemQty = cartItems[categoryIndex].item[itemIndex].quantity
+            const priceToDeduct = itemQty * payload.item.price;
+            cartItems.splice(categoryIndex, 1);
+            totalQuantity -= itemQty;
+            totalPrice -= priceToDeduct;
+        }
+    }
+
+    return {...state, cartItems, totalPrice, totalQuantity};
 }
