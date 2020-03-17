@@ -1,15 +1,19 @@
 import React from 'react';
-import './directory.styles.scss';
+import {connect} from 'react-redux';
 
-import SECTION_DATA from '../../config-files/directory.data';
+import './directory.styles.scss';
 
 import MenuItem from '../menu-item/menu-item.component';
 
-const Directory = () => (
+const Directory = ({sections}) => (
 
     <div className='directoryMenu'>
-        {SECTION_DATA.map(({title, id, imageUrl, size}) => <MenuItem key={id} title={title} imgUrl={imageUrl} size={size}/>)}
+        {sections.map(({title, id, imageUrl, size}) => <MenuItem key={id} title={title} imgUrl={imageUrl} size={size}/>)}
     </div>
 )
 
-export default Directory;
+const mapStateToProps = ({directory: {sections}}) => ({
+    sections
+});
+
+export default connect(mapStateToProps)(Directory);
