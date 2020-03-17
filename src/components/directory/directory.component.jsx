@@ -8,7 +8,7 @@ import MenuItem from '../menu-item/menu-item.component';
 const Directory = ({sections}) => (
 
     <div className='directoryMenu'>
-        {sections.map(({title, id, imageUrl, size}) => <MenuItem key={id} title={title} imgUrl={imageUrl} size={size}/>)}
+        {sections.map(({title, id, imageUrl, size, linkUrl}) => <MenuItem key={id} linkUrl={linkUrl} title={title} imgUrl={imageUrl} size={size}/>)}
     </div>
 )
 

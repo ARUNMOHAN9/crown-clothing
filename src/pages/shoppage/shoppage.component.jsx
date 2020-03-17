@@ -1,18 +1,14 @@
 import React from 'react';
-import { connect } from 'react-redux';
+import {Route} from 'react-router-dom';
 
-import PreviewCollection from '../../components/preview-collection/preview-collection.component';
+import CollectionOverview from '../../components/collection-overview/collection-overview.component';
+import CollectionPage from '../collectionPage/collectionPage.component';
 
-const ShopPage = ({collections}) => {
+const ShopPage = ({match}) => (
+    <div className="shop-page">
+        <Route exact path={`${match.path}`} component={CollectionOverview}/>
+        <Route  path={`${match.path}/:collectionId`} component={CollectionPage}/>
+    </div>
+)
 
-    return (
-        collections.map(
-            ({ id, ...otherCollectionProps }) => <PreviewCollection key={id} categoryId={id}{...otherCollectionProps} />
-        )
-    )
-}
-
-const mapStateToProps = ({shop: {collections}}) => ({
-    collections
-});
-export default connect(mapStateToProps)(ShopPage);
+export default ShopPage;
